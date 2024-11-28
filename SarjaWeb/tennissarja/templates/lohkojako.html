@@ -1,0 +1,54 @@
+{% extends "admin.html" %}
+{% block content %}
+    <div class="containerXL">
+        <h1>Lohkojako</h1>
+        <form method="POST" action="{{ url_for('admin.jaa_lohkot_uudelle_kierrokselle') }}">
+            <button type="submit" class="btn btn-primary">Generoi uusi sarjakierros</button>
+        </form>
+        <h2>Viimeisin sarjataulukko</h2>
+        {% for lohko_numero, pelaajat in lohkot.items() %}
+            <h3>Lohko {{ lohko_numero }}</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nimi</th>
+                        <th>Pisteet</th>
+                        <th>Ottelut</th>
+                        <th>Puhelin</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for pelaaja in pelaajat %}
+                        <tr>
+                            <td>{{ pelaaja.pelaaja.nimi }}</td>
+                            <td>{{ pelaaja.pisteet }}</td>
+                            <td>{{ pelaaja.ottelut_maara }}</td>
+                            <td>{{ pelaaja.pelaaja.puhelin }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endfor %}
+        <h2>Uudet aktiiviset pelaajat</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nimi</th>
+                    <th>Email</th>
+                    <th>Taso</th>
+                    <th>Puhelin</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pelaaja in uudet_pelaajat %}
+                    <tr>
+                        <td>{{ pelaaja.nimi }}</td>
+                        <td>{{ pelaaja.email }}</td>
+                        <td>{{ pelaaja.taso }}</td>
+                        <td>{{ pelaaja.puhelin }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

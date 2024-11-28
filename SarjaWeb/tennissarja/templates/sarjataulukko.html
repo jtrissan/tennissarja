@@ -1,0 +1,29 @@
+{% extends "index.html" %}
+{% block content %}
+    <div class="containerL">
+        <h1>Sarjataulukko</h1>
+        {% for lohko_numero, pelaajat in lohkot.items() %}
+            <h2>Lohko {{ lohko_numero }}</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nimi</th>
+                        <th>Pisteet</th>
+                        <th>Ottelut</th>
+                        <th>Puhelin</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for pelaaja in pelaajat %}
+                        <tr>
+                            <td>{{ pelaaja.pelaaja.nimi }}</td>
+                            <td>{{ pelaaja.pisteet }}</td>
+                            <td>{{ pelaaja.ottelut_maara }}</td>
+                            <td>{{ pelaaja.pelaaja.puhelin }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endfor %}
+    </div>
+{% endblock %}

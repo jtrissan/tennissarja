@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avoin Tennissarja</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin_styles.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+<body>
+
+    <!-- Otsikko ja navigointipalkki -->
+    <div class="header">
+        <h1>Avoin Tennissarja - Ylläpito</h1>
+        <div class="navbar">
+            {% if current_user.is_authenticated %}
+                <a href="{{ url_for('admin.lohkojako') }}">Uusi sarjakierros</a>
+                <a href="{{ url_for('admin.players') }}">Pelaajaluettelo</a>
+                <a href="{{ url_for('player.index') }}">Etusivu</a>
+                <a href="{{ url_for('auth.logout') }}">Logout</a>
+            {% else %}
+                <a href="{{ url_for('auth.login') }}">Login</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Pääsisältö -->
+    <div id="content" style="margin-top: 130px;">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+</body>
+</html>

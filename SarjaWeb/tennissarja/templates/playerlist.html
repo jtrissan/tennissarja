@@ -1,0 +1,33 @@
+{% extends "admin.html" %}
+{% block content %}
+    <div class="containerXL">
+        <h2>Pelaajaluettelo</h2>
+        <form method="GET" action="{{ url_for('admin.players') }}">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nimi</th>
+                        <th>Email</th>
+                        <th>Puhelin</th>
+                        <th>Taso</th>
+                        <th>Aktiivinen</th>
+                        <!-- <th>Admin</th> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for pelaaja in pelaajat %}
+                    <tr>
+                        <td>{{ pelaaja.nimi }}</td>
+                        <td>{{ pelaaja.email }}</td>
+                        <td>{{ pelaaja.puhelin }}</td>
+                        <td>{{ pelaaja.taso }}</td>
+                        <td>{{ pelaaja.aktiivinen }}</td>
+                        <!-- <td>{{ pelaaja.admin }}</td> -->
+                        
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </form>
+    </div>
+{% endblock %}

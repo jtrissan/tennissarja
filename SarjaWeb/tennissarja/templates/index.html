@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avoin Tennissarja</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    
+</head>
+<body>
+
+    <!-- Otsikko ja navigointipalkki -->
+    <div class="header">
+        <h1>Avoin Tennissarja</h1>
+        <div class="navbar">
+            <a href="{{ url_for('player.esittely') }}">Esittely</a>
+            {% if current_user.is_authenticated %}
+                <a href="{{ url_for('player.sarjataulukko') }}">Sarjataulukko</a>
+                <a href="{{ url_for('player.input') }}">Tuloksen tallennus</a>
+                <a href="{{ url_for('auth.update') }}">Päivitä tietojasi</a>
+                
+                {% if current_user.admin %}
+                    <a href="{{ url_for('admin.admin_dashboard') }}">Admin</a>
+                {% endif %}
+                <a href="{{ url_for('auth.logout') }}">Logout</a>
+            {% else %}
+                <a href="{{ url_for('auth.login') }}">Login</a>
+                <a href="{{ url_for('auth.register') }}">Ilmoittaudu pelaamaan</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Pääsisältö -->
+    <div id="content" style="margin-top: 130px;">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+</body>
+</html>
+
+
+

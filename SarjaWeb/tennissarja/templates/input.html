@@ -1,0 +1,71 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="containerS">
+    <h1>Ottelutuloksen tallennus</h1>
+
+    <form method="POST" action="{{ url_for('player.input')}}">
+        <!-- Pelaajat -->
+        <div class="form-group">
+            <label for="pelaaja1">Pelaaja 1:</label>
+                <!-- Sisäänkirjautunut pelaaja -->
+                <input type="text" id="pelaaja1" name="pelaaja1" value="{{ current_user.nimi }}" readonly>
+        </div>
+<!--
+        <div class="form-group">
+            <label for="pelaaja2">Pelaaja 2:</label>
+             Samassa lohkossa olevat pelaajat 
+            <select id="pelaaja2" name="pelaaja2" required>
+                <option value="" disabled selected>Valitse vastustaja</option>
+                {% for pelaaja in lohko_pelaajat %}
+                <option value="{{ pelaaja.id }}">{{ pelaaja.nimi }}</option>
+                {% endfor %}
+            </select>
+        </div>
+-->
+        <div class="form-group">
+  
+            <label for="pelaaja2_id">Vastustaja:</label>
+            <select id="pelaaja2_id" name="pelaaja2_id" required>
+                {% for pelaaja in saman_lohkon_pelaajat %}
+                    <option value="{{ pelaaja.pelaaja.id }}">{{ pelaaja.pelaaja.nimi }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <!-- Erätulokset -->
+        <div class="form-group">
+            <table>
+                <thead>
+                    <tr>
+                        <td>Erätulokset:</td>
+                        <th>Pelaaja 1</th>
+                        <th>Pelaaja 2</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Erä 1 -->
+                    <tr>
+                        <td>1. erä</td>
+                        <td><input type="number" id="era1_p1" name="era1_p1" min="0" max="7" required></td>
+                        <td><input type="number" id="era1_p2" name="era1_p2" min="0" max="7" required></td>
+                    </tr>
+                    <!-- Erä 2 -->
+                    <tr>
+                        <td>2. erä, jos aloitettu</td>
+                        <td><input type="number" id="era2_p1" name="era2_p1" min="0" max="7"></td>
+                        <td><input type="number" id="era2_p2" name="era2_p2" min="0" max="7"></td>
+                    </tr>
+                    <!-- Erä 3 -->
+                    <tr>
+                        <td>3. erä, jos aloitettu</td>
+                        <td><input type="number" id="era3_p1" name="era3_p1" min="0" max="30"></td>
+                        <td><input type="number" id="era3_p2" name="era3_p2" min="0" max="30"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <button type="submit">Lähetä tulokset</button>
+    </form>
+</div>
+{% endblock %}

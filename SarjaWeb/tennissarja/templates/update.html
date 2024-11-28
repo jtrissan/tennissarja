@@ -1,0 +1,62 @@
+{% extends "index.html" %}
+
+{% block content %}
+<div class="containerS">
+    <h1>Tietojen päivitys</h1>
+    <form method="POST" action="{{ url_for('auth.update') }}">
+        <div class="form-group">
+            <label for="nimi">Nimi:</label>
+            <input type="text" id="nimi" name="nimi" value="{{ current_user.nimi }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Sähköposti:</label>
+            <input type="email" id="email" name="email" value="{{ current_user.email }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="puhelin">Puhelinnumero:</label>
+            <input type="text" id="puhelin" name="puhelin" value="{{ current_user.puhelin }}" required>
+        </div>
+
+        <div class="form-group">
+            <div class="checkbox-group">
+                <label><input type="radio" name="aktiivisuus" value="True" {% if current_user.aktiivinen %}checked{% endif %}> Aktiivinen </label>
+                <label><input type="radio" name="aktiivisuus" value="False" {% if not current_user.aktiivinen %}checked{% endif %}> Tauolla </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="taso">Arvioitu taso turnauksissa:</label>
+            <div class="checkbox-group">
+                <label><input type="radio" name="taso" value="a" {% if current_user.taso == 'a' %}checked{% endif %}> A</label>
+                <label><input type="radio" name="taso" value="b" {% if current_user.taso == 'b' %}checked{% endif %}> B</label>
+                <label><input type="radio" name="taso" value="c" {% if current_user.taso == 'c' %}checked{% endif %}> C</label>
+                <label><input type="radio" name="taso" value="d" {% if current_user.taso == 'd' %}checked{% endif %}> D</label>
+                <label><input type="radio" name="taso" value="e" {% if current_user.taso == 'e' %}checked{% endif %}> E</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Uusi salasana:</label>
+            <input type="password" id="password" name="password">
+        </div>
+
+        <div class="form-group">
+            <label for="password2">Salasana uudestaan:</label>
+            <input type="password" id="password2" name="password2">
+        </div>
+
+        <button type="submit">Päivitä tiedot</button>
+    </form>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
+</div>
+{% endblock %}
