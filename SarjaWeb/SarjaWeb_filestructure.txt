@@ -1,0 +1,42 @@
+SarjaWeb/
+│
+├── main.py                 # Flask-sovelluksen käynnistystiedosto
+|
+├── requirements.txt        # Tarvittavat Python-kirjastot
+|
+├── /venv/                  # Python sovelluksen virtuaaliajoympäristön sisältävä hakemisto
+│
+├── /instance/
+|   └── tennissarja.db      # Sarjan tiedot, Sqlite3 tietokanta 
+│
+└── /tennissarja/
+    ├── __init__.py         # Flask-sovelluksen alustaminen
+    │
+    ├── models.py           # Tietokantamallit (SQLAlchemy)
+    ├── player.py           # Pelaajan lomakkeiden käsittelu
+    ├── admin.py            # Sarjan ylläpidon lomakkeiden käsittely
+    ├── services.py         # Otteluiden pisteytys, sekä lohkojen ja serjakierrosten hallinta.
+    │                       # + Tietokantaoperaatiot
+    │
+    |── /templates/         # HTML-pohjat (Jinja2)
+    │       ├── admin.html              # Ylläpidon päävalikko
+    │       ├── forgot_password.html    # Salasanan palautus
+    │       ├── index.html              # Pääsivu
+    │       ├── input.html              # Ottelutuloksen syöttö
+    │       ├── login.html              # Sisäänkirjautuminen
+    │       ├── lohkojako.html          # Uuden sarjakierroksen luonti
+    │       ├── pelaaja_tiedot.html     # Pelaajan yhteystiedot ja tilastot
+    │       ├── playerlist.html         # Ylläpidon pelaajalista
+    │       ├── register.html           # Rekisteröitymissivu
+    │       ├── sarjataulukko.html      # Sarjataulukko
+    │       └── update.html             # Pelaajan tietojen päivitys
+    │
+    |── /static/            # Staattiset tiedostot (CSS, JavaScript, kuvat)
+            |── styles.css              # Tyylitiedosto
+            |── admin_styles.css        # Admin käyttöliittymän tyylimäärittelyt
+            |── tenniscourt.jpg         # Taustakuva, pelaajien käyttöliittymä
+            |── hardcourt.jpg           # Taustakuva, ylläpidon käyttöliittymä
+            |── programs.js             # lomakkeen validiointi scriptejä (ei köytössä)
+            └── favicon.ico             # Ikoni selaimen välilehdelle
+
+
